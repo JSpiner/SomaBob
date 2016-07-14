@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_seller_qr"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="#f9f3ea"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal">
+        <View
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#6f6f6f"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:textSize="50sp"
+            android:id="@+id/tv_user_usercount"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="152"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="15dp"
+            android:id="@+id/tv_user_usertext"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#2f2f2f"
+            android:layout_height="wrap_content"
+            android:text="100명 이상의 연수생들이\nBob을 사용중입니다."/>
+
+        <View
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#6f6f6f"/>
+    </LinearLayout>
+</LinearLayout>

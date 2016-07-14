@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">SomaBob</string>
+    <string name="app_id">591688237675482</string>
+    <string-array name="food_type">
+        <item>한식</item>
+        <item>중식</item>
+        <item>일식</item>
+        <item>양식</item>
+        <item>분식</item>
+        <item>간식</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="review_price">
+        <item>매우 저렴</item>
+        <item>저렴</item>
+        <item>보통</item>
+        <item>비쌈</item>
+        <item>매우 비쌈</item>
+    </string-array>
+
+    <string-array name="review_point">
+        <item>매우 불만족</item>
+        <item>불만족</item>
+        <item>보통</item>
+        <item>만족</item>
+        <item>매우 만족</item>
+    </string-array>
 </resources>
