@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void init(){
+        this.overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
 
         ButterKnife.bind(this);
         bgLoading.setVisibility(View.VISIBLE);
@@ -282,5 +283,11 @@ public class MainActivity extends AppCompatActivity {
                     .fit()
                     .into(imvRow);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        this.overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+        super.onPause();
     }
 }

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 
+import net.jspiner.somabob.Activity.ReviewListActivity;
 import net.jspiner.somabob.Activity.SplashActivity;
 import net.jspiner.somabob.Model.CountModel;
 import net.jspiner.somabob.Model.ReviewModel;
@@ -156,7 +157,7 @@ public class MainAdapter extends BaseAdapter {
                     convertView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(context, SplashActivity.class);
+                            Intent intent = new Intent(context, ReviewListActivity.class);
                             context.startActivity(intent);
                         }
                     });

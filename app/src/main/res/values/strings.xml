@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SomaBob</string>
     <string name="app_id">591688237675482</string>
+    <string name="API_SERVER">http://somabob.azurewebsites.net/api/</string>
     <string-array name="food_type">
         <item>한식</item>
         <item>중식</item>

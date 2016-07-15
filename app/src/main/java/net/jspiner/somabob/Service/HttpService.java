@@ -2,6 +2,7 @@ package net.jspiner.somabob.Service;
 
 import net.jspiner.somabob.Model.CountModel;
 import net.jspiner.somabob.Model.HttpModel;
+import net.jspiner.somabob.Model.ReviewModel;
 
 import retrofit.Callback;
 import retrofit.client.Response;
@@ -27,6 +28,7 @@ public interface HttpService {
     @POST("/login.php")
     void login(@Field("userToken") String userToken,
                @Field("userName") String userName,
+               @Field("userImage") String userImage,
              Callback<HttpModel> ret);
 
     @GET("/user_count.php")
@@ -42,5 +44,13 @@ public interface HttpService {
                       @Part("reviewDetail") String reviewDetail,
                       @Part("reviewImage") TypedFile reviewImage,
                       Callback<HttpModel> ret);
+
+    @FormUrlEncoded
+    @POST("/reviews.php")
+    void reviews(@Field("page") int page,
+                 @Field("optionPrice") int optionPrice,
+                 @Field("optionPoint") int optionPoint,
+                 @Field("optionType") int optionType,
+                 Callback<ReviewModel> ret);
 
 }

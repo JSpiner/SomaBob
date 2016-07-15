@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -35,6 +36,7 @@ import net.jspiner.somabob.Util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -95,6 +97,11 @@ public class SplashActivity extends Activity {
         ButterKnife.bind(this);
         initFacebookSdk();
 
+        if(AccessToken.getCurrentAccessToken()!=null){
+
+            loginButton.setVisibility(View.GONE);
+
+        }
 
         if (checkPermission()) {
             handler.sendEmptyMessageDelayed(0, 2000);
@@ -120,23 +127,27 @@ public class SplashActivity extends Activity {
 
     public void login(){
         Profile profile = Profile.getCurrentProfile();
-        Util.getHttpSerivce().login(profile.getId(), profile.getName(), new Callback<HttpModel>() {
+
+        Log.d(TAG,"request login : "+profile.getId() +" name : "+profile.getName());
+
+        Util.getHttpSerivce().login(profile.getId(), profile.getName(), profile.getProfilePictureUri(400,400).toString(),
+            new Callback<HttpModel>() {
             @Override
             public void success(HttpModel response, Response response2) {
-                if(response.code == 0) {
+                if (response.code == 0) {
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                }else{
-                    Toast.makeText(getBaseContext(),"로그인 에러가 발생하였습니다.",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getBaseContext(), "로그인 에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
                     finish();
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.e(TAG,"error : "+error.getMessage());
-                Toast.makeText(getBaseContext(),"네트워크 에러가 발생하였습니다.",Toast.LENGTH_LONG).show();
+                Log.e(TAG, "error : " + error.getMessage());
+                Toast.makeText(getBaseContext(), "네트워크 에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -168,6 +179,8 @@ public class SplashActivity extends Activity {
     void initFacebookSdk() {
 
         callbackManager = CallbackManager.Factory.create();
+
+        loginButton.setTextLocale(Locale.KOREA);
 
         loginButton.setReadPermissions("public_profile");
         loginButton.setReadPermissions("user_about_me");
@@ -226,6 +239,18 @@ public class SplashActivity extends Activity {
     {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onResume() {
+        this.overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        this.overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+        super.onPause();
     }
 
 }

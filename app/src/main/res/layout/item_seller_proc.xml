@@ -7,8 +7,9 @@
         android:id="@+id/linear_seller_qr"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:background="#f9f3ea"
+        android:background="@color/colorPrimary"
         android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
         android:gravity="center"
         android:layout_gravity="center_horizontal">
 
@@ -16,8 +17,9 @@
             android:layout_marginTop="20dp"
             android:adjustViewBounds="true"
             android:layout_width="match_parent"
+            android:visibility="visible"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_settings_white_48dp"/>
+            android:src="@drawable/go_eat"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -85,10 +85,24 @@ public class WriteActivity extends AppCompatActivity {
     }
 
     void init(){
-
-        Intent intent = getIntent();
+        this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         ButterKnife.bind(this);
+
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.food_type, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFoodType.setAdapter(adapter1);
+
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.review_point, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerReviewPoint.setAdapter( adapter2);
+
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.review_price, android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerReviewPrice.setAdapter(adapter3);
 
         initToolbar();
     }
@@ -107,29 +121,8 @@ public class WriteActivity extends AppCompatActivity {
             }
         });
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
         btnWrite.setVisibility(View.VISIBLE);
 
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.food_type, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerFoodType.setAdapter(adapter1);
-
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.review_point, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerReviewPoint.setAdapter( adapter2);
-
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.review_price, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerReviewPrice.setAdapter( adapter3);
 
     }
 
@@ -160,21 +153,21 @@ public class WriteActivity extends AppCompatActivity {
                 edtTitle.getText().toString(),
                 spinnerReviewPoint.getSelectedItemPosition(),
                 spinnerReviewPrice.getSelectedItemPosition(),
-                spinnerFoodType.getSelectedItemPosition()
+                spinnerFoodType.getSelectedItemPosition(),
                 edtText.getText().toString(),
                 Util.resizeImage(selectedImage) == null ? null : new TypedFile("image/jpeg", selectedImage),
                 new Callback<HttpModel>() {
                     @Override
                     public void success(HttpModel httpModel, Response response) {
                         mProgressDialog.dismiss();
-                        if (httpModel.code == 1) {
+                        if (httpModel.code == 0) {
                             Toast.makeText(getBaseContext(), "성공적으로 작성하셨습니다 ", Toast.LENGTH_LONG).show();
 
                             finish();
 
                         } else {
                             Toast.makeText(getBaseContext(),
-                                    "알 수 없는 에러가 발생하였습니다."
+                                    "알 수 없는 에러가 발생하였습니다.",
                                     Toast.LENGTH_LONG).show();
                             Log.e(TAG, "network calc error : " + httpModel.message);
                         }
@@ -220,10 +213,9 @@ public class WriteActivity extends AppCompatActivity {
         }
     }
 
-    /*
+
     @Override
     protected void onResume() {
-        this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
         super.onResume();
     }
 
@@ -232,6 +224,4 @@ public class WriteActivity extends AppCompatActivity {
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
         super.onPause();
     }
-    *
-    */
 }

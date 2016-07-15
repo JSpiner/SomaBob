@@ -17,7 +17,7 @@
             android:layout_marginRight="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="최근 리뷰"
+            android:text="좋아요 Best 4"
             android:textColor="#000000"/>
 
         <android.support.v4.view.ViewPager
