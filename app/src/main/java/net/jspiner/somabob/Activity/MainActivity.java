@@ -228,40 +228,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         toggle.syncState();
 
-        /*
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    tvTitle.setVisibility(View.INVISIBLE);
-                    changeFragment(1);
-                } else {
-                    tvTitle.setVisibility(View.VISIBLE);
-                    changeFragment(0);
-                }
-            }
-        });
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });*/
-        /*
-        ((LinearLayout)findViewById(R.id.lv_drawer_lv1)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(getBaseContext(),"dfdf",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, CheckBookActivity.class);
-                startActivity(intent);
-
-            }
-        });*/
     }
 
 

@@ -119,23 +119,23 @@ public class MainAdapter extends BaseAdapter {
                     Util.getHttpSerivce().user_count(new Callback<CountModel>() {
                         @Override
                         public void success(CountModel response, Response response2) {
-                            if(response.result>=5){
-                                binder.tvUserText.setText("5명 이상의 연수생들이\n SomaBob을 사용중입니다.");
-                            }
-                            else if(response.result>=10){
-                                binder.tvUserText.setText("10명 이상의 연수생들이\n SomaBob을 사용중입니다.");
-                            }
-                            else if(response.result>=50){
-                                binder.tvUserText.setText("50명 이상의 연수생들이\n SomaBob을 사용중입니다.");
-                            }
-                            else if(response.result>=100){
-                                binder.tvUserText.setText("100명 이상의 연수생들이\n SomaBob을 사용중입니다.");
+                            if(response.result>=200){
+                                binder.tvUserText.setText("200명 이상의 연수생들이\n SomaBob을 사용중입니다.");
                             }
                             else if(response.result>=150){
                                 binder.tvUserText.setText("150명 이상의 연수생들이\n SomaBob을 사용중입니다.");
                             }
-                            else if(response.result>=200){
-                                binder.tvUserText.setText("200명 이상의 연수생들이\n SomaBob을 사용중입니다.");
+                            else if(response.result>=100){
+                                binder.tvUserText.setText("100명 이상의 연수생들이\n SomaBob을 사용중입니다.");
+                            }
+                            else if(response.result>=50){
+                                binder.tvUserText.setText("50명 이상의 연수생들이\n SomaBob을 사용중입니다.");
+                            }
+                            else if(response.result>=10){
+                                binder.tvUserText.setText("10명 이상의 연수생들이\n SomaBob을 사용중입니다.");
+                            }
+                            else if(response.result>=5){
+                                binder.tvUserText.setText("5명 이상의 연수생들이\n SomaBob을 사용중입니다.");
                             }
                             binder.tvUserCount.setText(""+response.result);
                         }

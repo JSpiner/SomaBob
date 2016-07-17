@@ -104,7 +104,7 @@ public class ReviewListAdapter extends BaseAdapter{
                     .into(binder.imvProfile);
 
 
-            binder.tvContent.setText(Html.fromHtml(reviewModel.reviewDetail));
+            binder.tvContent.setText(reviewModel.reviewDetail);
             binder.tvTime.setText(reviewModel.writeTime);
 
 

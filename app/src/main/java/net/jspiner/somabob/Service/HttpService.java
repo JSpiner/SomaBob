@@ -53,4 +53,12 @@ public interface HttpService {
                  @Field("optionType") int optionType,
                  Callback<ReviewModel> ret);
 
+    @FormUrlEncoded
+    @POST("/write_comment.php")
+    void write_comment(@Field("userToken") String userToken,
+                       @Field("reviewSeqNo") int reviewSeqNo,
+                       @Field("commentText") String commentText,
+                       Callback<HttpModel> ret);
+
+
 }

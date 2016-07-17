@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/menu_toolbar"/>
+
+    <!-- 스크롤 -->
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:background="#dddddd"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:paddingBottom="16dp"
+            android:orientation="vertical"
+            android:id="@+id/item_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#fdfdfd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:src="@drawable/logo"
+                            android:id="@+id/imv_review_profile"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="16dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_width="wrap_content"
+                            android:textColor="#2f2f2f"
+                            android:textStyle="bold"
+                            android:id="@+id/tv_review_name"
+                            android:textSize="20sp"
+                            android:text="정성민"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:textSize="13sp"
+                            android:id="@+id/tv_review_time"
+                            android:textColor="#7f7f7f"
+                            android:layout_width="wrap_content"
+                            android:text="5분전"
+                            android:layout_height="wrap_content">
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="17dp"
+                        android:layout_width="wrap_content"
+                        android:textColor="#5f5f5f"
+                        android:id="@+id/tv_review_option"
+                        android:text="가격 : 매우 비쌈 \n평점 : 매우 만족\n종류 : 한식"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="17dp"
+                        android:textColor="#3f3f3f"
+                        android:id="@+id/tv_review_content"
+                        android:layout_marginRight="25dp"
+                        android:textSize="16sp"
+                        android:linksClickable="true"
+                        android:autoLink="web|email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="선릉역 치킨집 후기! \n사장님도 개발자라 디버깅도 서비스로 해주시고 넘나 좋은것~"/>
+
+
+                    <ImageView
+                        android:layout_marginTop="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/sample"
+                        android:id="@+id/imv_review_file" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="#afafaf"/>
+
+                <LinearLayout
+                    android:background="#ffffff"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp">
+                        <LinearLayout
+                            android:id="@+id/lv_review_like"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="12dp"
+                                android:src="@drawable/ic_favorite_black_48dp"/>
+                            <TextView
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:textColor="#2f2f2f"
+                                android:textSize="14sp"
+                                android:id="@+id/tv_review_like"
+                                android:layout_height="wrap_content"
+                                android:text="좋아요 0명"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="14dp"
+                                android:src="@drawable/ic_comment_black_48dp"/>
+                            <TextView
+                                android:layout_marginLeft="5dp"
+                                android:textSize="14sp"
+                                android:id="@+id/tv_review_comment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#2f2f2f"
+                                android:text="댓글"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="#dddddd"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="40dp">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/edt_review_comment"
+                android:layout_width="match_parent"
+                android:textColor="#2f2f2f"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="50dp"
+            android:padding="5dp"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="match_parent"
+                android:id="@+id/btn_review_send"
+                android:background="@drawable/ic_send_black_48dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

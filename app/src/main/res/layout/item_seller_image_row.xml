@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:textColor="#444444"
             android:textSize="16sp"
-            android:text="3km"/>
+            android:text="센터 뒤 멕시카나 치킨"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import net.jspiner.somabob.Adapter.ReviewListAdapter;
 import net.jspiner.somabob.Model.ReviewModel;
 import net.jspiner.somabob.R;
@@ -57,25 +59,18 @@ public class ReviewListActivity extends AppCompatActivity {
         init();
     }
 
+    @Override
+    protected void onStart() {
+        adapter.reviewList.clear();
+        loadMore(0);
+        super.onStart();
+    }
+
     @OnItemClick(R.id.lv_reviewlist)
     void onListItemClick(int position){
         Log.d(TAG, " onItemClick : " + position);
         Intent intent = new Intent(ReviewListActivity.this, ReviewActivity.class);
-        startActivity(intent);
-    }
-
-    @OnItemLongClick(R.id.lv_reviewlist)
-    boolean onListItemLongClick(int position){
-        Log.d(TAG, " onItemLongClick : " + position);
-        Intent intent = new Intent(ReviewListActivity.this, ReviewActivity.class);
-        startActivity(intent);
-        return true;
-    }
-
-    @OnItemSelected(R.id.lv_reviewlist)
-    void onListItemSelected(int position){
-        Log.d(TAG, " onItemSelected : " + position);
-        Intent intent = new Intent(ReviewListActivity.this, ReviewActivity.class);
+        intent.putExtra("data", new Gson().toJson(adapter.getItem(position)));
         startActivity(intent);
     }
 
@@ -91,7 +86,10 @@ public class ReviewListActivity extends AppCompatActivity {
         adapter = new ReviewListAdapter(getBaseContext(), new ArrayList<ReviewModel.ReviewObject>());
         lvReview.setAdapter(adapter);
 
-        Util.getHttpSerivce().reviews(0, 0, 0, 0,
+    }
+
+    void loadMore(int page){
+        Util.getHttpSerivce().reviews(page, 0, 0, 0,
                 new Callback<ReviewModel>() {
                     @Override
                     public void success(ReviewModel response, Response response2) {
@@ -116,10 +114,6 @@ public class ReviewListActivity extends AppCompatActivity {
                         finish();
                     }
                 });
-    }
-
-    void loadMore(int page){
-
     }
 
 

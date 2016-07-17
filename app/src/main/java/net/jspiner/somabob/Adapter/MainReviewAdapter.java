@@ -31,7 +31,7 @@ public class MainReviewAdapter extends PagerAdapter {
     private LayoutInflater mInflater;
     Context context;
 
-    int res[] = {R.drawable.ic_settings_white_48dp, R.drawable.ic_settings_white_48dp, R.drawable.ic_settings_white_48dp, R.drawable.ic_settings_white_48dp, R.drawable.ic_settings_white_48dp, R.drawable.ic_settings_white_48dp, R.drawable.ic_settings_white_48dp};
+    int res[] = {R.drawable.sample, R.drawable.sample, R.drawable.sample, R.drawable.sample, R.drawable.sample, R.drawable.sample, R.drawable.sample};
 
     public MainReviewAdapter(Context c){
         super();
