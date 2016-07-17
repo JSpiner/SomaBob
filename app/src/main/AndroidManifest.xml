@@ -39,6 +39,11 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".Activity.ReviewActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:name="nl.changer.polypicker.ImagePickerActivity" />

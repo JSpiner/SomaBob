@@ -161,58 +161,6 @@ public class ReviewListAdapter extends BaseAdapter{
             ButterKnife.bind(this, view);
         }
 
-        @OnClick(R.id.lv_review_like)
-        void onLikeClick(){
-            /*
-            Util.getHttpSerivce().likeschoolboarditem(boardList.get(position).idx,
-                    roomhash,
-                    LoginToken.getLoginToken().getToken(),
-                    new Callback<HttpModel>() {
-                        @Override
-                        public void success(HttpModel httpModel, Response response) {
-                            if (httpModel.code == 1) {
-                                if (tvLike.getCurrentTextColor() != Color.BLUE) {
-                                    tvLike.setTextColor(Color.BLUE);
-                                    tvLike.setText("좋아요 " + (boardList.get(position).bestcounter + 1) + "명");
-                                } else {
-                                    if (tvLike.getCurrentTextColor() == Color.BLUE) {
-                                        tvLike.setTextColor(Color.BLACK);
-                                        tvLike.setText("좋아요 " + (boardList.get(position).bestcounter) + "명");
-                                    } else {
-                                        tvLike.setTextColor(Color.BLUE);
-                                        tvLike.setText("좋아요 " + (boardList.get(position).bestcounter + 1) + "명");
-                                    }
-                                }
-                            } else {
-                                Toast.makeText(context,
-                                        context.getString(R.string.msg_toast_network_calc_error) + (Util.DEBUG_MODE ? httpModel.message : ""),
-                                        Toast.LENGTH_LONG).show();
-                                Log.e(TAG, "network calc error : " + httpModel.message);
-                            }
-                        }
-
-                        @Override
-                        public void failure(RetrofitError error) {
-                            Toast.makeText(context,
-                                    context.getString(R.string.msg_toast_network_error) + (Util.DEBUG_MODE ? error.getMessage() : ""),
-                                    Toast.LENGTH_LONG).show();
-                            Log.e(TAG, "network error : " + error.getMessage());
-                        }
-                    });*/
-        }
-
-        @OnClick(R.id.item_review)
-        void onArticleClick(){
-            /*
-            Intent intent = new Intent(context, ArticleActivity.class);
-            String json = (new Gson()).toJson(boardList.get(position));
-            Log.d(TAG, "json : " +json);
-            intent.putExtra("json", json);
-            intent.putExtra("roomhash", ((RoomActivity) context).roomhash);
-            intent.putExtra("isanous", ((RoomActivity) context).isAnnous);
-//            intent.putExtra("boardhash", boardList.get(position).boardhash);
-            context.startActivity(intent);*/
-        }
     }
 
     @Override

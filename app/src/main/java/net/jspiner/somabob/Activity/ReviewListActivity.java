@@ -1,5 +1,6 @@
 package net.jspiner.somabob.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,10 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemClick;
+import butterknife.OnItemLongClick;
+import butterknife.OnItemSelected;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -31,6 +36,8 @@ import retrofit.client.Response;
  */
 public class ReviewListActivity extends AppCompatActivity {
 
+    public static final String TAG = ReviewListActivity.class.getSimpleName();
+
     //toolbar
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -39,9 +46,8 @@ public class ReviewListActivity extends AppCompatActivity {
 
     @Bind(R.id.lv_reviewlist)
     ListView lvReview;
-    ReviewListAdapter adapter;
 
-    public static final String TAG = ReviewListActivity.class.getSimpleName();
+    ReviewListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,29 @@ public class ReviewListActivity extends AppCompatActivity {
         init();
     }
 
+    @OnItemClick(R.id.lv_reviewlist)
+    void onListItemClick(int position){
+        Log.d(TAG, " onItemClick : " + position);
+        Intent intent = new Intent(ReviewListActivity.this, ReviewActivity.class);
+        startActivity(intent);
+    }
+
+    @OnItemLongClick(R.id.lv_reviewlist)
+    boolean onListItemLongClick(int position){
+        Log.d(TAG, " onItemLongClick : " + position);
+        Intent intent = new Intent(ReviewListActivity.this, ReviewActivity.class);
+        startActivity(intent);
+        return true;
+    }
+
+    @OnItemSelected(R.id.lv_reviewlist)
+    void onListItemSelected(int position){
+        Log.d(TAG, " onItemSelected : " + position);
+        Intent intent = new Intent(ReviewListActivity.this, ReviewActivity.class);
+        startActivity(intent);
+    }
+
+
     void init(){
 
         this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
@@ -59,23 +88,22 @@ public class ReviewListActivity extends AppCompatActivity {
 
         initToolbar();
 
+        adapter = new ReviewListAdapter(getBaseContext(), new ArrayList<ReviewModel.ReviewObject>());
+        lvReview.setAdapter(adapter);
 
         Util.getHttpSerivce().reviews(0, 0, 0, 0,
                 new Callback<ReviewModel>() {
                     @Override
                     public void success(ReviewModel response, Response response2) {
-                        if(response.code==0){
+                        if (response.code == 0) {
 
-                            ArrayList<ReviewModel.ReviewObject> ar = new ArrayList();
 
-                            for (ReviewModel.ReviewObject reviewObject : response.result){
-                                ar.add(reviewObject);
+                            for (ReviewModel.ReviewObject reviewObject : response.result) {
+                                adapter.reviewList.add(reviewObject);
                             }
+                            adapter.update();
 
-                            adapter = new ReviewListAdapter(getBaseContext(), ar);
-                            lvReview.setAdapter(adapter);
-                        }
-                        else{
+                        } else {
                             Toast.makeText(getBaseContext(), "알 수 없는 에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
                             finish();
                         }
