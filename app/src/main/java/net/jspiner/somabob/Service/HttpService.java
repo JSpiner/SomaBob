@@ -1,7 +1,9 @@
 package net.jspiner.somabob.Service;
 
+import net.jspiner.somabob.Model.CommentModel;
 import net.jspiner.somabob.Model.CountModel;
 import net.jspiner.somabob.Model.HttpModel;
+import net.jspiner.somabob.Model.LikeModel;
 import net.jspiner.somabob.Model.ReviewModel;
 
 import retrofit.Callback;
@@ -47,7 +49,8 @@ public interface HttpService {
 
     @FormUrlEncoded
     @POST("/reviews.php")
-    void reviews(@Field("page") int page,
+    void reviews(@Field("userToken") String userToken,
+                 @Field("page") int page,
                  @Field("optionPrice") int optionPrice,
                  @Field("optionPoint") int optionPoint,
                  @Field("optionType") int optionType,
@@ -60,5 +63,20 @@ public interface HttpService {
                        @Field("commentText") String commentText,
                        Callback<HttpModel> ret);
 
+    @FormUrlEncoded
+    @POST("/comments.php")
+    void comments(@Field("reviewSeqNo") int reviewSeqNo,
+                  Callback<CommentModel> ret);
+
+    @FormUrlEncoded
+    @POST("/load_top_review.php")
+    void load_top_review(@Field("userToken") String userToken,
+            Callback<ReviewModel> ret);
+
+    @FormUrlEncoded
+    @POST("/like.php")
+    void like(@Field("userToken") String userToken,
+              @Field("reviewSeqNo") int reviewSeqNo,
+              Callback<LikeModel> ret);
 
 }

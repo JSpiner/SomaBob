@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.Profile;
 import com.google.gson.Gson;
 
 import net.jspiner.somabob.Adapter.ReviewListAdapter;
@@ -89,13 +90,11 @@ public class ReviewListActivity extends AppCompatActivity {
     }
 
     void loadMore(int page){
-        Util.getHttpSerivce().reviews(page, 0, 0, 0,
+        Util.getHttpSerivce().reviews(Profile.getCurrentProfile().getId(), page, 0, 0, 0,
                 new Callback<ReviewModel>() {
                     @Override
                     public void success(ReviewModel response, Response response2) {
                         if (response.code == 0) {
-
-
                             for (ReviewModel.ReviewObject reviewObject : response.result) {
                                 adapter.reviewList.add(reviewObject);
                             }

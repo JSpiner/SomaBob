@@ -57,6 +57,9 @@ public class ReviewModel extends HttpModel {
         @SerializedName("writeTime")
         public String writeTime;
 
+        @SerializedName("isLike")
+        public boolean isLike;
+
 
     }
 }

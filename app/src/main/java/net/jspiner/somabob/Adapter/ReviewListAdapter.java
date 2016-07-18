@@ -1,5 +1,6 @@
 package net.jspiner.somabob.Adapter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,10 +19,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.Profile;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import net.jspiner.somabob.Model.HttpModel;
+import net.jspiner.somabob.Model.LikeModel;
 import net.jspiner.somabob.Model.ReviewModel;
 import net.jspiner.somabob.R;
 import net.jspiner.somabob.Util;
@@ -111,12 +114,13 @@ public class ReviewListAdapter extends BaseAdapter{
 
             binder.tvComment.setText("댓글 "+reviewModel.commentCount+"명");
             binder.tvLike.setText("좋아요 "+reviewModel.likeCount+"명");
-/*
-            for(BoardModel.LikeObject like : likeList){
-                if(like.boarditemidx == boardObject.idx){
-                    binder.tvLike.setTextColor(Color.BLUE);
-                }
-            }*/
+
+            if(reviewModel.isLike){
+                binder.lvLike.setBackgroundColor(Color.argb(50,0,0,200));
+            }
+            else{
+                binder.lvLike.setBackgroundColor(Color.TRANSPARENT);
+            }
 
 
         } finally {
@@ -159,6 +163,31 @@ public class ReviewListAdapter extends BaseAdapter{
         public ViewBinder(View view, int position){
             this.position = position;
             ButterKnife.bind(this, view);
+        }
+
+        @OnClick(R.id.lv_review_like)
+        void onLikeClick(){
+            Util.getHttpSerivce().like(Profile.getCurrentProfile().getId(), reviewList.get(position).reviewSeqNo,
+                    new Callback<LikeModel>() {
+                        @Override
+                        public void success(LikeModel httpModel, Response response) {
+                            if (httpModel.code == 0) {
+                                reviewList.get(position).isLike = httpModel.type==1;
+                                reviewList.get(position).likeCount += (httpModel.type==1?1:-1);
+                                update();
+                            } else {
+                                Toast.makeText(context, "알 수 없는 에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
+                                ((Activity)context).finish();
+                            }
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Log.e(TAG, "error : " + error.getMessage());
+                            Toast.makeText(context, "네트워크 에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
+                            ((Activity)context).finish();
+                        }
+                    });
         }
 
     }

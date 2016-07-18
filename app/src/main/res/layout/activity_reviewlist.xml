@@ -6,11 +6,11 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/menu_toolbar" />
-<!--
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
--->
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,7 +19,6 @@
             android:id="@+id/lv_reviewlist">
 
         </ListView>
-        <!--
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_main_add"
             android:layout_width="wrap_content"
@@ -29,5 +28,5 @@
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_settings_white_48dp"
             app:backgroundTint="@color/colorAccent" />
-    </FrameLayout>-->
+    </FrameLayout>
 </LinearLayout>

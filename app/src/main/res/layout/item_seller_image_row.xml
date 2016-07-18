@@ -33,6 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#ffffff"
+                    android:id="@+id/tv_review_date"
                     android:textSize="18sp"
                     android:text="16/07/12"/>
 
@@ -52,8 +53,11 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textSize="18sp"
+            android:lines="1"
+            android:id="@+id/tv_review_content"
             android:text="분위기도 좋고 맛있어요!"/>
         <TextView
+            android:id="@+id/tv_review_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#444444"
