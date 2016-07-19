@@ -93,6 +93,12 @@ public class ReviewActivity extends AppCompatActivity {
     @Bind(R.id.lv_comment)
     LinearLayout lvComment;
 
+    @Bind(R.id.tv_review_option)
+    TextView tvOption;
+
+    @Bind(R.id.tv_review_title)
+    TextView tvStoreTitle;
+
     ReviewModel.ReviewObject reviewObject;
 
 
@@ -179,7 +185,7 @@ public class ReviewActivity extends AppCompatActivity {
                 .into(imvFile);
 
 
-        tvName.setText( reviewModel.userName);
+        tvName.setText(reviewModel.userName);
 
         //profile image
 
@@ -196,6 +202,13 @@ public class ReviewActivity extends AppCompatActivity {
 
         tvComment.setText("댓글 "+reviewModel.commentCount+"명");
         tvLike.setText("좋아요 " + reviewModel.likeCount + "명");
+
+        tvStoreTitle.setText(reviewModel.storeName);
+        tvOption.setText(
+                "가격 : " + getResources().getStringArray(R.array.review_price)[reviewModel.reviewPrice] +"\n"+
+                        "평점 : " + getResources().getStringArray(R.array.review_point)[reviewModel.reviewPoint] +"\n"+
+                        "종류 : " + getResources().getStringArray(R.array.food_type)[reviewModel.reviewType] +"\n"
+        );
 
 
         if(reviewModel.isLike){

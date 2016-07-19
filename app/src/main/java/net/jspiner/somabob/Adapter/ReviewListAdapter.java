@@ -96,7 +96,7 @@ public class ReviewListAdapter extends BaseAdapter{
                     .into(binder.imvFile);
 
 
-            binder.tvName.setText( reviewModel.userName);
+            binder.tvName.setText(reviewModel.userName);
 
             //profile image
 
@@ -114,6 +114,13 @@ public class ReviewListAdapter extends BaseAdapter{
 
             binder.tvComment.setText("댓글 "+reviewModel.commentCount+"명");
             binder.tvLike.setText("좋아요 "+reviewModel.likeCount+"명");
+
+            binder.tvStoreTitle.setText(reviewModel.storeName);
+            binder.tvOption.setText(
+                    "가격 : " + context.getResources().getStringArray(R.array.review_price)[reviewModel.reviewPrice] +"\n"+
+                    "평점 : " + context.getResources().getStringArray(R.array.review_point)[reviewModel.reviewPoint] +"\n"+
+                    "종류 : " + context.getResources().getStringArray(R.array.food_type)[reviewModel.reviewType] +"\n"
+            );
 
             if(reviewModel.isLike){
                 binder.lvLike.setBackgroundColor(Color.argb(50,0,0,200));
@@ -157,6 +164,12 @@ public class ReviewListAdapter extends BaseAdapter{
 
         @Bind(R.id.lv_review_like)
         LinearLayout lvLike;
+
+        @Bind(R.id.tv_review_option)
+        TextView tvOption;
+
+        @Bind(R.id.tv_review_title)
+        TextView tvStoreTitle;
 
         int position;
 

@@ -32,6 +32,7 @@ import com.google.gson.Gson;
 
 import net.jspiner.somabob.Model.HttpModel;
 import net.jspiner.somabob.R;
+import net.jspiner.somabob.Service.GCMRegister;
 import net.jspiner.somabob.Util;
 
 import java.security.MessageDigest;
@@ -96,6 +97,12 @@ public class SplashActivity extends Activity {
 
         ButterKnife.bind(this);
         initFacebookSdk();
+
+
+
+        GCMRegister reg = new GCMRegister(this, this);
+        reg.execute();
+        Log.d(TAG,"reg id : "+GCMRegister.push_token);
 
         if(AccessToken.getCurrentAccessToken()!=null){
 

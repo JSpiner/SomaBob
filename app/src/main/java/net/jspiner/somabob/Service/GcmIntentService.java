@@ -65,7 +65,7 @@ public class GcmIntentService extends IntentService {
                 if(!extras.toString().contains("RST_FULL")) {
                     try {
 
-                        String data = extras.getString("data");
+                        String data = extras.getString("message");
                         JSONObject json = new JSONObject(data);
                         sendNotification(json);
                     } catch (JSONException e) {
@@ -114,9 +114,9 @@ public class GcmIntentService extends IntentService {
                         .setSmallIcon(R.drawable.logo)
                         .setContentTitle("댓글이 달렸습니다.")
                         .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText("dd"))
+                                .bigText("메세지를 확인하세요"))
                         .setAutoCancel(true)
-                        .setContentText("dd");
+                        .setContentText("메세지를 확인하세요");
         mBuilder.getNotification().flags |= Notification.FLAG_AUTO_CANCEL;
 
         mBuilder.setContentIntent(contentIntent);

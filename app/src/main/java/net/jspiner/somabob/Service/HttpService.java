@@ -79,4 +79,11 @@ public interface HttpService {
               @Field("reviewSeqNo") int reviewSeqNo,
               Callback<LikeModel> ret);
 
+
+    @FormUrlEncoded
+    @POST("/pushtoken.php")
+    void pushtoken(@Field("userToken") String userToken,
+                   @Field("pushToken") String pushToken,
+                   Callback<HttpModel> ret);
+
 }

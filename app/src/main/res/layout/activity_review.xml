@@ -96,6 +96,18 @@
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="17dp"
+                        android:textColor="#000000"
+                        android:id="@+id/tv_review_title"
+                        android:layout_marginRight="25dp"
+                        android:textSize="18sp"
+                        android:ellipsize="marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="센터 바로 뒤 멕시카나 치킨"/>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="17dp"
                         android:textColor="#3f3f3f"
                         android:id="@+id/tv_review_content"
                         android:layout_marginRight="25dp"

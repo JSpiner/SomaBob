@@ -24,8 +24,11 @@ import com.nirhart.parallaxscroll.views.ParallaxListView;
 import com.squareup.picasso.Picasso;
 
 import net.jspiner.somabob.Adapter.MainAdapter;
+import net.jspiner.somabob.Model.HttpModel;
 import net.jspiner.somabob.Model.ReviewModel;
 import net.jspiner.somabob.R;
+import net.jspiner.somabob.Service.GCMRegister;
+import net.jspiner.somabob.Util;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,9 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.header.MaterialHeader;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Copyright 2016 JSpiner. All rights reserved.
@@ -81,6 +87,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Util.getHttpSerivce().pushtoken(Profile.getCurrentProfile().getId(),
+                GCMRegister.push_token,
+                new Callback<HttpModel>() {
+                    @Override
+                    public void success(HttpModel httpModel, Response response) {
+
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
     }
 
     @OnClick(R.id.fab_main_add)
@@ -210,7 +235,6 @@ public class MainActivity extends AppCompatActivity {
                 int lastInScreen = firstVisibleItem + visibleItemCount;
                 if ((lastInScreen == totalItemCount) && !(loadingMore)) {
 
-//                    loadmore();
                 }
             }
         });
