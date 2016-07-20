@@ -74,7 +74,7 @@ public class ReviewListActivity extends AppCompatActivity {
         intent.putExtra("data", new Gson().toJson(adapter.getItem(position)));
         startActivity(intent);
     }
-
+//
 
     void init(){
 
