@@ -1,12 +1,17 @@
 package net.jspiner.somabob.Activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +57,10 @@ public class ReviewListActivity extends AppCompatActivity {
 
     ReviewListAdapter adapter;
 
+    int optionType = 0;
+    int optionPrice = 0;
+    int optionPoint = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +85,56 @@ public class ReviewListActivity extends AppCompatActivity {
     }
 //
 
+    @OnClick(R.id.fab_main_add)
+    void onFabClick(){
+        View innerView = getLayoutInflater().inflate(R.layout.item_dialog_selector, null);
+        final ViewBinder binder = new ViewBinder(innerView);
+
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.food_type, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binder.spinnerType.setAdapter(adapter1);
+
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.review_point, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binder.spinnerPoint.setAdapter(adapter2);
+
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.review_price, android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binder.spinnerPrice.setAdapter(adapter3);
+
+        binder.spinnerType.setSelection(optionType);
+        binder.spinnerPrice.setSelection(optionPrice);
+        binder.spinnerPoint.setSelection(optionPoint);
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(ReviewListActivity.this);
+        dialog
+                .setTitle("옵션을 선택해 주세요").setView(innerView)
+                .setPositiveButton("설정", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        optionType = binder.spinnerType.getSelectedItemPosition();
+                        optionPoint = binder.spinnerPoint.getSelectedItemPosition();
+                        optionPrice = binder.spinnerPrice.getSelectedItemPosition();
+
+                        adapter.reviewList.clear();
+                        loadMore(0);
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .create()
+                .show();
+
+
+    }
+
     void init(){
 
         this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
@@ -90,7 +149,7 @@ public class ReviewListActivity extends AppCompatActivity {
     }
 
     void loadMore(int page){
-        Util.getHttpSerivce().reviews(Profile.getCurrentProfile().getId(), page, 0, 0, 0,
+        Util.getHttpSerivce().reviews(Profile.getCurrentProfile().getId(), page, optionPrice, optionPoint, optionType,
                 new Callback<ReviewModel>() {
                     @Override
                     public void success(ReviewModel response, Response response2) {
@@ -137,5 +196,23 @@ public class ReviewListActivity extends AppCompatActivity {
     protected void onPause() {
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
         super.onPause();
+    }
+
+    public class ViewBinder{
+
+        @Bind(R.id.spinner_food_type)
+        public Spinner spinnerType;
+
+        @Bind(R.id.spinner_review_price)
+        public Spinner spinnerPrice;
+
+        @Bind(R.id.spinner_review_point)
+        public Spinner spinnerPoint;
+
+
+        public ViewBinder(View view){
+            ButterKnife.bind(this, view);
+        }
+
     }
 }

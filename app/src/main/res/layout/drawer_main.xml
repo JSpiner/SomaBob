@@ -70,32 +70,7 @@
                     android:textSize="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="예약 확인 및 취소"/>
-            </LinearLayout>
-
-            <View
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#ffffff"
-                ></View>
-            <LinearLayout
-                android:id="@+id/lv_drawer_lv2"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_height="50dp">
-                <ImageView
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_settings_white_48dp"/>
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="계정 및 앱 설정"/>
+                    android:text="로그아웃"/>
             </LinearLayout>
 
         </LinearLayout>

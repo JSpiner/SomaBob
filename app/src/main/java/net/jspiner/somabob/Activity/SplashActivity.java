@@ -145,6 +145,7 @@ public class SplashActivity extends Activity {
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
+
                 } else {
                     Toast.makeText(getBaseContext(), "로그인 에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
                     finish();

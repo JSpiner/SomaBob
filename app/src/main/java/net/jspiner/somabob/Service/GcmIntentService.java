@@ -65,10 +65,10 @@ public class GcmIntentService extends IntentService {
                 if(!extras.toString().contains("RST_FULL")) {
                     try {
 
-                        String data = extras.getString("message");
-                        JSONObject json = new JSONObject(data);
-                        sendNotification(json);
-                    } catch (JSONException e) {
+                        String data = extras.getString("data");
+//                        JSONObject json = new JSONObject(data);
+                        sendNotification(data);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     for (String key : extras.keySet()) {
@@ -85,7 +85,7 @@ public class GcmIntentService extends IntentService {
     }
 
 
-    void sendNotification(JSONObject json){
+    void sendNotification(String json){
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock sCpuWakeLock = pm.newWakeLock(
                 PowerManager.SCREEN_BRIGHT_WAKE_LOCK |

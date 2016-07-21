@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
+import com.facebook.login.widget.LoginButton;
 import com.nirhart.parallaxscroll.views.ParallaxListView;
 import com.squareup.picasso.Picasso;
 
@@ -254,6 +256,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.lv_drawer_lv1)
+    void onDrawerMenu1Click(){
+        LoginManager.getInstance().logOut();
+        finish();
+    }
 
     public class ViewBinder{
 
