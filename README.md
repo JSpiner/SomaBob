@@ -12,3 +12,12 @@ https://github.com/JSpiner/SomaBob_server
 
 # Server API Document
 https://docs.google.com/document/d/1Za6ZeR3IgqIujALubVyBtnBNKO5jnNtG5WKFk0yL6Vo/edit?usp=sharing
+
+# Application Functions
+* Send push notification when comments generated.
+* It offers 'like top 4 ranking'.
+* Server API is based on RESTful-API
+* The server operates on Microsoft Azure Cloud service.
+* You can upload reviews that include picture, price rating, delicous rating, etc.
+* It offers review filter.
+* You can login with Facebook-Account.
